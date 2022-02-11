@@ -5,9 +5,13 @@ function Phonetics({ phonetics }) {
   }
   return (
     <div>
-      <h3>Phonetics</h3>
-      <div>{phonetics.text}</div>
-      <button onClick={playSound}>Play sound</button>
+      {phonetics && (
+        <div>
+          <h3>Phonetics</h3>
+          <div>{phonetics.text}</div>
+          <button onClick={playSound}>Play sound</button>
+        </div>
+      )}
     </div>
   )
 }

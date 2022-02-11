@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-function Search({ setMeaning }) {
+function Search({ setMeaning, setErrorResponse }) {
   const [word, setWord] = useState('')
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -10,8 +10,12 @@ function Search({ setMeaning }) {
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
       )
       setMeaning(response.data[0])
+      setErrorResponse(undefined)
     } catch (error) {
-      console.error(error)
+      setMeaning(undefined)
+      if (error.response) {
+        setErrorResponse(error.response.data)
+      }
     }
   }
 

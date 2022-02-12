@@ -7,7 +7,7 @@ function Meaning({ meaning, errorResponse, setMeaning, setErrorResponse }) {
   return (
     <>
       {errorResponse && (
-        <div className={'mt-4'}>
+        <div className={'mt-6'}>
           <h3 className={'text-red-600 flex items-center gap-2'}>
             <MdError className={'text-3xl'} />
             Error: {errorResponse.title}

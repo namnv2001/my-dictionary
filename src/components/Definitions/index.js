@@ -1,33 +1,9 @@
-import axios from 'axios'
-import styles from './style.module.scss'
+import useAxios from 'hooks/useAxios'
+import Synonyms from 'components/Synonyms'
+import Antonyms from 'components/Antonyms'
 
 function Definition({ setErrorResponse, setMeaning, definitions }) {
-  const receiveData = async (word) => {
-    try {
-      const response = await axios.get(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-      )
-      setMeaning(response.data[0])
-      setErrorResponse(undefined)
-    } catch (error) {
-      setMeaning(undefined)
-      if (error.response) {
-        setErrorResponse(error.response.data)
-      } else if (error.request) {
-        setErrorResponse({
-          title: 'No response from server',
-          message: 'Please check your internet connection',
-          resolution: 'Please check your internet connection',
-        })
-      } else {
-        setErrorResponse({
-          title: 'Unknown error',
-          message: error.message,
-          resolution: 'Please try again later',
-        })
-      }
-    }
-  }
+  const { receiveData } = useAxios({ setMeaning, setErrorResponse })
   const navigate = (e) => {
     receiveData(e.target.innerText)
   }
@@ -43,30 +19,10 @@ function Definition({ setErrorResponse, setMeaning, definitions }) {
             </div>
             {def.example && <div>Example: {def.example}</div>}
             {def.antonyms[0] && (
-              <div>
-                Antonyms:{' '}
-                {def.antonyms.map((antonym, index) => (
-                  <span key={index}>
-                    <span className={styles.word} onClick={(e) => navigate(e)}>
-                      {antonym}
-                    </span>
-                    <span> | </span>
-                  </span>
-                ))}
-              </div>
+              <Antonyms antonyms={def.antonyms} navigate={navigate} />
             )}
             {def.synonyms[0] && (
-              <div>
-                Synonyms:{' '}
-                {def.synonyms.map((synonym, index) => (
-                  <span key={index}>
-                    <span className={styles.word} onClick={(e) => navigate(e)}>
-                      {synonym}
-                    </span>
-                    <span> | </span>
-                  </span>
-                ))}
-              </div>
+              <Synonyms synonyms={def.synonyms} navigate={navigate} />
             )}
           </div>
         ))}

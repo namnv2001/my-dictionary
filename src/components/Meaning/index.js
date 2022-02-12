@@ -1,22 +1,35 @@
 import Definition from 'components/Definitions'
 import Phonetics from 'components/Phonetics'
 
-function Meaning({ meaning, errorResponse }) {
+import { MdError } from 'react-icons/md'
+
+function Meaning({ meaning, errorResponse, setMeaning, setErrorResponse }) {
   return (
     <>
       {errorResponse && (
-        <div>
-          <h3>Error: {errorResponse.title}</h3>
-          <div>{errorResponse.message}</div>
-          <div>{errorResponse.resolution}</div>
+        <div className={'mt-4'}>
+          <h3 className={'text-red-600 flex items-center gap-2'}>
+            <MdError className={'text-3xl'} />
+            Error: {errorResponse.title}
+          </h3>
+          <div className={'text-sm'}>{errorResponse.message}</div>
+          <div className={'text-sm'}>{errorResponse.resolution}</div>
         </div>
       )}
       {meaning && (
-        <div>
-          <h1>{meaning.word}</h1>
-          {meaning.origin && <div>Origin: {meaning.origin}</div>}
-          <Definition definitions={meaning.meanings[0].definitions} />
-          <Phonetics phonetics={meaning.phonetics[0]} />
+        <div className={'mt-4'}>
+          <h1 className={'capitalize'}>{meaning.word}</h1>
+          {meaning.origin && (
+            <div className={'italic text-sm'}>Origin: {meaning.origin}</div>
+          )}
+          <div className={'flex mt-4 gap-2'}>
+            <Definition
+              setErrorResponse={setErrorResponse}
+              setMeaning={setMeaning}
+              definitions={meaning.meanings[0].definitions}
+            />
+            <Phonetics phonetics={meaning.phonetics[0]} />
+          </div>
         </div>
       )}
     </>

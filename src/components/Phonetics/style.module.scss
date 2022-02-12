@@ -1,0 +1,9 @@
+.btn {
+  @apply border-0 p-1 bg-white text-2xl cursor-pointer hover:bg-gray-100;
+  &:hover {
+    @apply bg-white;
+  }
+  &:hover > .icon {
+    @apply text-blue-700;
+  }
+}

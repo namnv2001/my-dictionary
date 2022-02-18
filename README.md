@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Receive data through API
 - Search for word's definitions in English
 - Pronounce if available
-- Search for synonyms or antonyms if available
+- ~~Search for synonyms or antonyms if available~~
 
 ## Technologies
 

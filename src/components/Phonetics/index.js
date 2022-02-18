@@ -14,9 +14,11 @@ function Phonetics({ phonetics }) {
           <h3>Phonetics</h3>
           <div className={'flex gap-4 items-center'}>
             <div className={'-mt-2'}>{phonetics.text}</div>
-            <button onClick={playSound} className={styles.btn}>
-              <AiOutlineSound className={styles.icon} />
-            </button>
+            {phonetics.audio && (
+              <button onClick={playSound} className={styles.btn}>
+                <AiOutlineSound className={styles.icon} />
+              </button>
+            )}
           </div>
         </div>
       )}

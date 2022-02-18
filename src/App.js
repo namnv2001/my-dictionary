@@ -14,12 +14,7 @@ function App() {
         }
       >
         <Search setMeaning={setMeaning} setErrorResponse={setErrorResponse} />
-        <Meaning
-          meaning={meaning}
-          errorResponse={errorResponse}
-          setMeaning={setMeaning}
-          setErrorResponse={setErrorResponse}
-        />
+        <Meaning meaning={meaning} errorResponse={errorResponse} />
       </div>
     </div>
   )

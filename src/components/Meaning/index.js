@@ -3,7 +3,7 @@ import Phonetics from 'components/Phonetics'
 
 import { MdError } from 'react-icons/md'
 
-function Meaning({ meaning, errorResponse, setMeaning, setErrorResponse }) {
+function Meaning({ meaning, errorResponse }) {
   return (
     <>
       {errorResponse && (
@@ -23,11 +23,7 @@ function Meaning({ meaning, errorResponse, setMeaning, setErrorResponse }) {
             <div className={'italic text-sm'}>Origin: {meaning.origin}</div>
           )}
           <div className={'flex mt-4 gap-2'}>
-            <Definition
-              setErrorResponse={setErrorResponse}
-              setMeaning={setMeaning}
-              definitions={meaning.meanings[0].definitions}
-            />
+            <Definition definitions={meaning.meanings[0].definitions} />
             <Phonetics phonetics={meaning.phonetics[0]} />
           </div>
         </div>
